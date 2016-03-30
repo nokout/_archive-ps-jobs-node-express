@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+  head
+    title PS Jobs
+    meta(charset='UTF-8')
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+  if ENV_DEVELOPMENT
+    script(src='http://localhost:35729/livereload.js')
+    script(src='components/jquery/dist/jquery.js')
+    script(src='components/bootstrap/dist/js/bootstrap.js')
+    link(href='components/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
+  else
+    script(src='components/jquery/dist/jquery.min.js')
+    script(src='../public/components/bootstrap/dist/js/bootstrap.min.js')
+    link(href='../public/components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet')
+
+  body
+    block content

@@ -1,0 +1,14 @@
+{
+  "name": "psjobs_loader",
+  "version": "0.0.1",
+  "description": "creates the database to be used in the website",
+  "main": "load,js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nedb": "^1.8.0"
+  }
+}

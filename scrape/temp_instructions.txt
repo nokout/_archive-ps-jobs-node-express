@@ -1,0 +1,3 @@
+run casperjs casper_search to process the search page, this outputs notices.json
+then run casperjs casper_process to process each notice page, this outputs a file for each notice in the output folder
+then run node make_listing.js to make the stripped down listing
