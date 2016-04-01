@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var moment = require('moment');
 var Datastore = require('nedb');
 var db = new Datastore({
 	filename: '../database/notices_database.json',
@@ -15,6 +15,7 @@ db.ensureIndex({
 router.get('/info', function(req, res) {
 	res.render('info', null);
 });
+
 
 router.get('/:page?', function(req, res) {
 	var params = {
@@ -31,9 +32,14 @@ router.get('/:page?', function(req, res) {
 	}
 	var skip = params.offset * (params.page - 1);
 	var limit = params.offset;
-	var today = Date.now();
-//	db.find({ "closing": { $lt: today } })
-	db.find({})
+	var cutoff_date = moment().subtract(5, 'days').toISOString();
+	//	db.find({ "closing": { $lt: today } })
+	var query = {
+		"published_date": {
+			$gt: cutoff_date
+		}
+	};
+	db.find(query)
 		.sort({
 			published_date: -1
 		})
@@ -45,7 +51,8 @@ router.get('/:page?', function(req, res) {
 				return;
 			}
 			params.notices = docs;
-			db.count({}, function(err, count) {
+			db.count(query, function(err, count) {
+				console.log("Count: " + count);
 				params.total_pages = Math.ceil(count / params.offset);
 
 				res.render('page', params);

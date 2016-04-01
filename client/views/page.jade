@@ -3,12 +3,13 @@ block content
   - var short_month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   div
     //make this a block
-    nav.navbar.navbar-default
-      span.h1.text-left PSJobs     
-      a(href="1" aria-label="Home") 
-        span.glyphicon.glyphicon-home(style="font-size: 2rem;")
-      a(href="info" aria-label="Information")
-        span.glyphicon.glyphicon-info-sign(style="font-size: 2rem;")
+    nav.navbar.navbar-default.container-fluid
+      span.col-xs-6.text-left.h1 PSJobs     
+      span.col-xs-6.text-right.h1
+        a#home-link(href="1" aria-label="Home")
+          span.glyphicon.glyphicon-home#home-icon
+        a.text-right#info-link(href="info" aria-label="Information") 
+          span.glyphicon.glyphicon-info-sign#info-icon
     //make this a block
     div.list-group.text-left
       for notice in notices
