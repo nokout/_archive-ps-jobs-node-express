@@ -1,0 +1,19 @@
+FROM node
+
+# need to share database dir, use a shared volume to sort that
+# define the volume here and link it all together in a compose
+# nginx?
+
+
+# need node and casperjs
+# prob base from node and install casperjs
+# use shared database volume to get data to casper
+# cron from host or docker for schedule?
+
+FROM node
+
+COPY .*:/client
+#This is a shared host volume used by both client and scrape.
+VOLUME /database
+
+RUN CD client && grunt
