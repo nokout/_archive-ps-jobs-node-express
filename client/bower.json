@@ -8,6 +8,5 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.6",
-    "moment": "~2.12.0"
   }
 }

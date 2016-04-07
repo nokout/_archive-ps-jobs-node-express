@@ -32,14 +32,17 @@ router.get('/:page?', function(req, res) {
 	}
 	var skip = params.offset * (params.page - 1);
 	var limit = params.offset;
-	var cutoff_date = moment().subtract(5, 'days').toISOString();
+	var cutoff_date = moment().subtract(60, 'days').toISOString();
+	var today = moment().toISOString();
 	//	db.find({ "closing": { $lt: today } })
 	var query = {
 		"published_date": {
 			$gt: cutoff_date
 		}
+		//TODO and closing lt today
 	};
 	db.find(query)
+	// db.find({})
 		.sort({
 			published_date: -1
 		})
