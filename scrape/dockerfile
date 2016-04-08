@@ -1,11 +1,14 @@
-
 FROM node
-#not sure if the node docker has cron
 
-COPY .*:/scrape
+COPY ./ /scrape/
 VOLUME /database
+VOLUME /scrape
 
-#CMD curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash - && sudo apt-get install -y nodejs
-CMD sudo npm install -g casperjs
+WORKDIR /scrape
+RUN npm install -g phantomjs && npm install -g casperjs
 
-RUN /scrape/scrape.bash
+CMD /scrape/scrape.bash
+
+#Command line follows to help in building compose
+#docker build -t psjobs_scrape .
+#docker run -v '/database':'/home/nokout/projects/psjobs/database' -P psjobs_scrape
