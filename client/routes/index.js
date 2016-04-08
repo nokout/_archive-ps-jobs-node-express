@@ -11,11 +11,9 @@ db.ensureIndex({
 	unique: true
 });
 
-
 router.get('/info', function(req, res) {
 	res.render('info', null);
 });
-
 
 router.get('/:page?', function(req, res) {
 	var params = {

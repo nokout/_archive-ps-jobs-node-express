@@ -1,19 +1,15 @@
 FROM node
+#Consider using the pm2 image https://github.com/dashersw/docker-node-pm2
 
-# need to share database dir, use a shared volume to sort that
-# define the volume here and link it all together in a compose
-# nginx?
-
-
-# need node and casperjs
-# prob base from node and install casperjs
-# use shared database volume to get data to casper
-# cron from host or docker for schedule?
-
-FROM node
-
-COPY .*:/client
+#If dev just use a volume mapped to the project dir
+COPY ./ /client/
 #This is a shared host volume used by both client and scrape.
 VOLUME /database
+VOLUME /client/
+RUN npm install pm2 -g
 
-RUN CD client && grunt
+WORKDIR /client
+CMD pm2 start process.json --no-daemon
+EXPOSE 3000 3000
+
+# ENTRYPOINT pm2 start process.json
