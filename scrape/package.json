@@ -2,7 +2,6 @@
   "name": "scrape",
   "version": "1.0.0",
   "description": "",
-  "main": "casper_process.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

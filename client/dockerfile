@@ -1,10 +1,11 @@
 FROM node
 #Consider using the pm2 image https://github.com/dashersw/docker-node-pm2
 
-#If dev just use a volume mapped to the project dir
 COPY ./ /client/
 #This is a shared host volume used by both client and scrape.
 VOLUME /database
+
+#Use this volume to override code with a local copy
 VOLUME /client/
 RUN npm install pm2 -g
 
@@ -12,4 +13,5 @@ WORKDIR /client
 CMD pm2 start process.json --no-daemon
 EXPOSE 3000 3000
 
-# ENTRYPOINT pm2 start process.json
+#docker build -t psjobs_client .
+#docker run -v '/database':'/home/nokout/projects/psjobs/database' -P client
