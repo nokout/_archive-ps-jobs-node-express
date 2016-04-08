@@ -1,3 +1,6 @@
+#Note: Only the bootstrap less is currently version controlled as
+#      it is the only component I want to modify.
+
 fonts/*
 grunt/*
 js/*
