@@ -6,6 +6,7 @@ var db = new Datastore({
 	filename: '../database/notices_database.json',
 	autoload: true
 });
+
 db.ensureIndex({
 	fieldName: 'notice_id',
 	unique: true
@@ -40,7 +41,7 @@ router.get('/:page?', function(req, res) {
 		//TODO and closing lt today
 	};
 	db.find(query)
-	// db.find({})
+		// db.find({})
 		.sort({
 			published_date: -1
 		})
